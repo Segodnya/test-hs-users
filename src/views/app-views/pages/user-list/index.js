@@ -56,8 +56,8 @@ export default class UserList extends Component {
 
   handleUserDataChange = (newData) => {
     this.setState((prevState) => ({
-      userData: {
-        ...prevState.userData,
+      selectedUser: {
+        ...prevState.selectedUser,
         ...newData,
       },
     }));
