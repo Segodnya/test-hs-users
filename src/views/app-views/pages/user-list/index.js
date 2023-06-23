@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Table, Tag, Tooltip, message, Button, Spin } from 'antd';
-import { EyeOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import UserView from './UserView';
 import AvatarStatus from 'components/shared-components/AvatarStatus';
 
-export class UserList extends Component {
+export default class UserList extends Component {
   state = {
     users: [],
     userProfileVisible: false,
@@ -52,6 +52,15 @@ export class UserList extends Component {
       userProfileVisible: false,
       selectedUser: null,
     });
+  };
+
+  handleUserDataChange = (newData) => {
+    this.setState((prevState) => ({
+      userData: {
+        ...prevState.userData,
+        ...newData,
+      },
+    }));
   };
 
   render() {
@@ -121,7 +130,7 @@ export class UserList extends Component {
               <Button
                 type="primary"
                 className="mr-2"
-                icon={<EyeOutlined />}
+                icon={<EditOutlined />}
                 onClick={() => {
                   this.showUserProfile(elm);
                 }}
@@ -159,10 +168,9 @@ export class UserList extends Component {
           close={() => {
             this.closeUserProfile();
           }}
+          onDataChange={this.handleUserDataChange}
         />
       </Card>
     );
   }
 }
-
-export default UserList;
